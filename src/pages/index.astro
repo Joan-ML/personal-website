@@ -1,11 +1,43 @@
 ---
 import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/LayoutBase.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
+<Layout title="Joan Mas Lloret">
+	<h1>Hello! I'm Joan Mas Lloret</h1>
 
-<Layout>
-	<Welcome />
+	<img src="src/assets/foto.jpg" alt="Joan Mas Lloret" width="200" height="200" />
+
+	<p>I am a software engineer, with a focus on DevOps and platform engineering.</p>
+
+	<h2>A little about me</h2>
+
+	<p>Since I was a kid, I've always loved technology and computers. I've also always loved biology, which led my to study biochemistry and biomedical science.<br />
+	As the lab is not the place for a clumsy person such as me, I self-taught my way back into computers.<br />
+	I am from València, Spain.</p>
+
+	<p>
+		<a href="/blog">Blog</a> · <a href="/cv">CV</a>
+	</p>
+
+	<style>
+		html,
+		body {
+			margin: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			min-height: 100vh;
+			padding: 2rem 2rem 3rem;
+			box-sizing: border-box;
+		}
+	</style>
 </Layout>

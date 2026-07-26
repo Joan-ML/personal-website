@@ -1,0 +1,27 @@
+---
+import BaseLayout from './LayoutBase.astro';
+
+const { title, frontmatter } = Astro.props;
+const pageTitle = title || frontmatter?.title;
+---
+<BaseLayout title={pageTitle}>
+    <article class="blog-container">
+        <slot />
+    </article>
+</BaseLayout>
+
+<style>
+    .blog-container {
+        max-width: 65ch; 
+        margin: 0 auto; 
+        text-align: left; 
+        padding: 2rem 1.5rem; 
+        line-height: 1.7; 
+        font-size: 1.125rem; 
+        color: #333333; 
+    }
+
+    .blog-container :global(p) {
+        margin-bottom: 1.5rem;
+    }
+</style>
