@@ -1,18 +1,84 @@
 ---
-// Layout.astro
+// src/layouts/LayoutBase.astro
+import ThemeToggle from '../components/ThemeToggle.astro';
+
 const { title } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+
+        <script is:inline>
+            const theme = (() => {
+                if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                    return localStorage.getItem('theme');
+                }
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            })();
+
+            document.documentElement.style.colorScheme = theme === 'dark' ? 'dark' : 'light';
+
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        </script>
+    </head>
+    <body>
+        <ThemeToggle />
+        <slot />
+    </body>
 </html>
+
+<style is:global>
+    :root {
+        --bg-color: #f8f1e7;
+        --text-color: #333333;
+
+        --accent-color: #2563eb;
+        --accent-hover: #1d4ed8;
+        --button-text-color: #ffffff;
+    }
+
+    html {
+        background-color: var(--bg-color);
+    }
+
+    html.dark {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+
+        --accent-color: #60a5fa;
+        --accent-hover: #93c5fd;
+        --button-text-color: #121212;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        min-height: 100vh;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+	:root {
+        --accent-color: #2563eb; 
+        --accent-visited: #7e22ce;
+    }
+
+    html.dark {
+        --accent-color: #60a5fa; 
+        --accent-visited: #c084fc;
+    }
+
+    a { color: var(--accent-color); }
+    a:visited { color: var(--accent-visited); }
+</style>
