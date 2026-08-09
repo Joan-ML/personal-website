@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/LayoutBase.astro';
+import { Image } from 'astro:assets';
+import profilePic from '../assets/foto.jpg';
 ---
 <Layout title="Joan Mas Lloret">
     <main class="profile-layout">
@@ -17,7 +19,7 @@ import Layout from '../layouts/LayoutBase.astro';
             </p>
         </div>
 
-		<img src="src/assets/foto.jpg" alt="Joan Mas Lloret" width="200" height="200" class="photo" />
+        <Image src={profilePic} alt="Joan Mas Lloret" class="photo" width={200} height={200} />
     </main>
 
     <style>
