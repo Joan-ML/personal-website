@@ -9,4 +9,4 @@ title: Joan's blog
 
 * [Introducing myself](/blog/introducing-myself)
 * [Too fast](/blog/too-fast)
-* [Update. Your. Dependencies.](blog/update-your-dependencies)
+* [Update. Your. Dependencies.](/blog/update-your-dependencies)
