@@ -3,12 +3,14 @@ name: Build and Deploy
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy
+    name: Build and Deploy if applicable
     permissions:
       contents: read
       deployments: write
@@ -29,6 +31,7 @@ jobs:
       - name: Build
         run: pnpm run build
       - name: Deploy
+        if: github.ref == 'refs/heads/main'
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
