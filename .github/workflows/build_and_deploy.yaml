@@ -10,7 +10,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy
+    name: Build and Deploy if applicable
     permissions:
       contents: read
       deployments: write
